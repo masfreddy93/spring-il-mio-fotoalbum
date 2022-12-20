@@ -5,8 +5,12 @@ import java.util.List;
 
 import org.spring.italy.demo.pojo.Category;
 import org.spring.italy.demo.pojo.Foto;
+import org.spring.italy.demo.pojo.Role;
+import org.spring.italy.demo.pojo.User;
 import org.spring.italy.demo.serv.CategoryServ;
 import org.spring.italy.demo.serv.FotoServ;
+import org.spring.italy.demo.serv.RoleServ;
+import org.spring.italy.demo.serv.UserServ;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -17,6 +21,8 @@ public class SpringIlMioFotoalbumApplication implements CommandLineRunner {
 
 	@Autowired FotoServ fotoServ;
 	@Autowired CategoryServ categoryServ;
+	@Autowired RoleServ roleServ;
+	@Autowired UserServ userServ;
 	
 	public static void main(String[] args) {
 		SpringApplication.run(SpringIlMioFotoalbumApplication.class, args);
@@ -83,5 +89,29 @@ public class SpringIlMioFotoalbumApplication implements CommandLineRunner {
 		fotoServ.save(f5);
 		System.err.println(f5);
 		System.err.println(f5.getCategories());
+		
+		
+
+		//AUTENTICAZIONE
+		//ruoli
+		Role admin = new Role("ADMIN");
+		
+		roleServ.save(admin);
+		
+		List<Role> roles = roleServ.findAll();
+		System.err.println("-----------------------");
+		System.err.println("Ruoli");
+		System.err.println(roles);
+		
+		
+		//utenti
+		User u1 = new User("admin", "{noop}admin", admin);
+				
+		userServ.save(u1);
+
+		List<User> users = userServ.findAll();
+		System.err.println("-----------------------");
+		System.err.println("Utenti");
+		System.err.println(users);
 	}
 }

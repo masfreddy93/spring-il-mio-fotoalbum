@@ -19,7 +19,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import jakarta.validation.Valid;
 
 @Controller
-@RequestMapping("/categories")
+@RequestMapping("/categories/admin")
 public class CategoryController {
 
 	@Autowired CategoryServ categoryServ;
@@ -58,7 +58,7 @@ public class CategoryController {
 						
 			redirectAttributes.addFlashAttribute("errors", bindingResult.getAllErrors());
 			
-			return "redirect:/categories/create";
+			return "redirect:/categories/admin/create";
 		}
 
 		
@@ -74,7 +74,7 @@ public class CategoryController {
 			return "redirect:/categories/create";
 		}
 		
-		return "redirect:/categories";
+		return "redirect:/categories/admin";
 	}
 	
 	
@@ -110,7 +110,7 @@ public class CategoryController {
 			
 			redirectAttributes.addFlashAttribute("errors", bindingResult.getAllErrors());
 			
-			return "redirect:/categories/update/" + category.getId();
+			return "redirect:/categories/admin/update/" + category.getId();
 			
 		}
 
@@ -127,7 +127,7 @@ public class CategoryController {
 			return "redirect:/categories/update/" + category.getId();
 		}
 		
-		return "redirect:/categories";
+		return "redirect:/categories/admin";
 	}
 	
 	
@@ -149,7 +149,7 @@ public class CategoryController {
 		}
 		
 		
-		return "redirect:/categories";
+		return "redirect:/categories/admin";
 	}
 	
 }

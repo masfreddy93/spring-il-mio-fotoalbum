@@ -10,7 +10,7 @@
 	<div>
 		<h1>Categories</h1>
 		
-		<a th:href="@{/categories/create}">Create category</a>
+		<a th:href="@{/categories/admin/create}">Create category</a>
 		<table th:if="${categories.size()} > 0">
 			<thead>
 				<tr>
@@ -40,12 +40,12 @@
 					</td>
 					<td>
 						<a
-							th:href="@{/categories/update/{id} (id = *{id})}"
+							th:href="@{/categories/admin/update/{id} (id = *{id})}"
 						>
 							Edit
 						</a>
 						<a
-							th:href="@{/categories/delete/{id} (id = *{id})}"
+							th:href="@{/categories/admin/delete/{id} (id = *{id})}"
 						>
 							Delete
 						</a>

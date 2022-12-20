@@ -35,7 +35,7 @@ public class FotoController {
 		return "fotos/index";
 	}
 	
-	@GetMapping("/foto/{id}")
+	@GetMapping("admin/foto/{id}")
 	public String showFoto(@PathVariable("id") int id, Model model) {
 		
 		Foto foto = fotoServ.findById(id);
@@ -45,7 +45,7 @@ public class FotoController {
 	}
 	
 	
-	@GetMapping("/create")
+	@GetMapping("/admin/create")
 	public String createFoto(Model model) {
 		
 		Foto f = new Foto();
@@ -57,14 +57,14 @@ public class FotoController {
 	}
 	
 		
-	@PostMapping("/create")
+	@PostMapping("/admin/create")
 	public String storeFoto(@Valid Foto foto, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
 		
 		if(bindingResult.hasErrors()) {
 						
 			redirectAttributes.addFlashAttribute("errors", bindingResult.getAllErrors());
 			
-			return "redirect:/fotos/create";
+			return "redirect:/fotos/admin/create";
 		}
 
 		
@@ -77,14 +77,14 @@ public class FotoController {
 			final String msg = e.getMessage();
 			redirectAttributes.addFlashAttribute("catchError", msg);
 			
-			return "redirect:/fotos/create";
+			return "redirect:/fotos/admin/create";
 		}
 		
 		return "redirect:/fotos";
 	}
 	
 	
-	@GetMapping("/update/{id}")
+	@GetMapping("/admin/update/{id}")
 	public String editFoto(@PathVariable("id") int id, Model model) {
 		
 		Foto foto = fotoServ.findById(id);
@@ -95,14 +95,14 @@ public class FotoController {
 		return "fotos/foto-update";
 	}
 	
-	@PostMapping("/store")
+	@PostMapping("/admin/store")
 	public String updateFoto(@Valid Foto foto, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
 		
 		if(bindingResult.hasErrors()) {
 			
 			redirectAttributes.addFlashAttribute("errors", bindingResult.getAllErrors());
 			
-			return "redirect:/fotos/update/" + foto.getId();
+			return "redirect:/fotos/admin/update/" + foto.getId();
 			
 		}
 
@@ -116,7 +116,7 @@ public class FotoController {
 			final String msg = e.getMessage();
 			redirectAttributes.addFlashAttribute("catchError", msg);
 			
-			return "redirect:/fotos/update/" + foto.getId();
+			return "redirect:/fotos/admin/update/" + foto.getId();
 		}
 		
 		return "redirect:/fotos";
@@ -124,7 +124,7 @@ public class FotoController {
 	
 	
 	
-	@GetMapping("/delete/{id}")
+	@GetMapping("/admin/delete/{id}")
 	public String deleteFoto(@PathVariable("id") int id, RedirectAttributes redirectAttributes) {
 		
 		try {

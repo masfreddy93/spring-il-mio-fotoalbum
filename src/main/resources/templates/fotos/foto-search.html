@@ -19,7 +19,7 @@
 		</form>
 		<br><br>
 		
-		<a th:href="@{/fotos/create}">Create foto</a>
+		<a th:href="@{/fotos/admin/create}">Create foto</a>
 		<table th:if="${fotos.size()} > 0">
 			<thead>
 				<tr>
@@ -41,7 +41,7 @@
 					<td>[[*{id}]]</td>
 					<td>
 						<a
-							th:href="@{/fotos/foto/{id} (id=*{id})}"
+							th:href="@{/fotos/admin/foto/{id} (id=*{id})}"
 						>
 							[[*{title}]]
 						</a>
@@ -61,12 +61,12 @@
 					</td>
 					<td>
 						<a
-							th:href="@{/fotos/update/{id} (id = *{id})}"
+							th:href="@{/fotos/admin/update/{id} (id = *{id})}"
 						>
 							Edit
 						</a>
 						<a
-							th:href="@{/fotos/delete/{id} (id = *{id})}"
+							th:href="@{/fotos/admin/delete/{id} (id = *{id})}"
 						>
 							Delete
 						</a>

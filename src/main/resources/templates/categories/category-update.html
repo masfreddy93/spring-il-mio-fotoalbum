@@ -15,7 +15,7 @@
 	<form
 		th:object="${category}"
 		method="POST"
-		th:action="@{/categories/store/{id} (id = *{id})}"
+		th:action="@{/categories/admin/store/{id} (id = *{id})}"
 	>
 	
 		<input type="number" name="id" th:field="*{id}" style="display:none" >
