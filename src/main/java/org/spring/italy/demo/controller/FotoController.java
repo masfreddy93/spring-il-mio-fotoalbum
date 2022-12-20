@@ -154,7 +154,7 @@ public class FotoController {
 			
 		} else {
 			
-			fotos = fotoServ.findByTitle(query);
+			fotos = fotoServ.findByTitleOrTag(query, query);
 		}
 		
 		

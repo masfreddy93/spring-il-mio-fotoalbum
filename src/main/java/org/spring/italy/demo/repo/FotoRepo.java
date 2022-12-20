@@ -9,5 +9,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface FotoRepo extends JpaRepository<Foto, Integer>{
 	
-	public List<Foto> findByTitleContainingIgnoreCase(String title);
+	public List<Foto> findByTitleContainingOrTagContaining(String title, String tag);
+	
 }
