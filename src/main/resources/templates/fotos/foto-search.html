@@ -62,11 +62,13 @@
 					<td>
 						<a
 							th:href="@{/fotos/admin/update/{id} (id = *{id})}"
+							sec:authorize="hasAuthority('ADMIN')"
 						>
 							Edit
 						</a>
 						<a
 							th:href="@{/fotos/admin/delete/{id} (id = *{id})}"
+							sec:authorize="hasAuthority('ADMIN')"
 						>
 							Delete
 						</a>

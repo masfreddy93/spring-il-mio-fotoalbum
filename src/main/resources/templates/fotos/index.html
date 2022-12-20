@@ -14,7 +14,12 @@
 		</div>
 		<br><br>
 		
-		<a th:href="@{/fotos/admin/create}">Create foto</a>
+		<a 
+			th:href="@{/fotos/admin/create}"
+			sec:authorize="hasAuthority('ADMIN')"
+		>
+			Create foto
+		</a>
 		<table th:if="${fotos.size()} > 0">
 			<thead>
 				<tr>
@@ -57,11 +62,13 @@
 					<td>
 						<a
 							th:href="@{/fotos/admin/update/{id} (id = *{id})}"
+							sec:authorize="hasAuthority('ADMIN')"
 						>
 							Edit
 						</a>
 						<a
 							th:href="@{/fotos/admin/delete/{id} (id = *{id})}"
+							sec:authorize="hasAuthority('ADMIN')"
 						>
 							Delete
 						</a>

@@ -10,9 +10,15 @@
 	<div th:fragment="header">
 		<div>
 			<a href="/fotos">Fotos</a>
-			<a href="/categories/admin">Categories</a>
+			<a 
+				href="/categories/admin" 
+				sec:authorize="hasAuthority('ADMIN')"
+			>
+				Categories
+			</a>
 		</div>
 		<div>
+			User: <span sec:authentication="name"></span>
 			<a href="http://localhost:8080/login?logout">Log out</a>
 		</div>
 	</div>
