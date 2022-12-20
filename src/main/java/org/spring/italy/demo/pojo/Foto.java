@@ -113,6 +113,17 @@ public class Foto {
 		this.categories = categories;
 	}
 	
+	public void addCategories(Category category) {
+		
+		boolean finded = false;
+		for (Category i : getCategories()) 
+			if (i.getId() == category.getId())
+				finded = true;
+		
+		if (!finded) 
+			getCategories().add(category);
+	}
+	
 	
 	@Override
 	public String toString() {

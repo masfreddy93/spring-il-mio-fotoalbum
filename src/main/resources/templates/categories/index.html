@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Index</title>
+</head>
+<body>
+	<header th:insert="frag :: header"></header>
+	
+	<div>
+		<h1>Categories</h1>
+		
+		<a th:href="@{/categories/create}">Create category</a>
+		<table th:if="${categories.size()} > 0">
+			<thead>
+				<tr>
+					<th>ID</th>
+					<th>Name</th>
+					<th>Fotos</th>
+					<th>
+					<th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr
+					th:each="category : ${categories}"
+					th:object=${category}
+				>
+					<td>[[*{id}]]</td>
+					<td>[[*{name}]]</td>
+					<td>
+						<ul th:if="*{fotos}">
+							<li
+								th:each="foto : *{fotos}"
+								th:object="${foto}"
+							>
+								[[*{title}]]
+							</li>
+						</ul>
+					</td>
+					<td>
+						<a
+							th:href="@{/categories/update/{id} (id = *{id})}"
+						>
+							Edit
+						</a>
+						<a
+							th:href="@{/categories/delete/{id} (id = *{id})}"
+						>
+							Delete
+						</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</body>
+</html>

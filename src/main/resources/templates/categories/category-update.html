@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Update category</title>
+</head>
+<body>
+	<header th:insert="frag :: header"></header>
+	
+	<h1>Update category</h1>
+	
+	<div th:insert="frag :: errors"></div>
+
+
+	<form
+		th:object="${category}"
+		method="POST"
+		th:action="@{/categories/store/{id} (id = *{id})}"
+	>
+	
+		<input type="number" name="id" th:field="*{id}" style="display:none" >
+		
+		<div>
+			<label>Name</label>
+			<input type="text" name="name" th:field="*{name}">
+			<div>Insert name</div>
+		</div>
+		<br>
+		<div>
+			<label>Fotos</label>
+			<div th:each="foto : ${fotos}" th:object="${foto}">
+				<input type="checkbox"  name="fotos" th:value="*{id}" th:field="${category.fotos}">
+				<label>[[*{title}]]</label>	
+			</div>
+			<div>Check fotos</div>
+		</div>
+		
+		
+		<br><br>
+		<input type="submit" value="Update">
+	</form>
+</body>
+</html>

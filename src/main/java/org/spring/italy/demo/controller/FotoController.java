@@ -77,7 +77,7 @@ public class FotoController {
 			final String msg = e.getMessage();
 			redirectAttributes.addFlashAttribute("catchError", msg);
 			
-			return "redirect:/fotos/creates";
+			return "redirect:/fotos/create";
 		}
 		
 		return "redirect:/fotos";
