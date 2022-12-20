@@ -28,4 +28,8 @@ public class FotoServ {
 		
 		return fotoRepo.findAll();
 	}
+	public List<Foto> findByTitle(String title){
+		
+		return fotoRepo.findByTitleContainingIgnoreCase(title);
+	}
 }

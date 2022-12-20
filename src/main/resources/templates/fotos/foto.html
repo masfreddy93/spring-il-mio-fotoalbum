@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Foto details</title>
+</head>
+<body>
+	<header th:insert="frag :: header"></header>
+	
+	<div>
+		<h1>Foto</h1>
+		
+		<div
+			th:object="${foto}"
+		>
+			<div>ID: [[*{id}]]</div>
+			<div>TITLE: [[*{title}]]</div>
+			<div>DESCRIPTION: [[*{description}]]</div>
+			<div>URL: [[*{url}]]</div>
+			<div>TAG: [[*{tag}]]</div>
+			<div>VISIBLE: [[*{visible}]]</div>
+			<div th:if="*{categories.size()} > 0">CATEGORIES: 
+				<ul>
+					<li
+						th:each="category : *{categories}"
+						th:object="${category}"
+					>
+						[[*{name}]]
+					</li>
+				</ul>
+			</div>
+			<div>DATETIME:[[*{dateTime}]]</div>
+		</div>
+	</div>
+</body>
+</html>

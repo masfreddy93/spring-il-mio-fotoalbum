@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Foto create</title>
+</head>
+<body>
+	<header th:insert="frag :: header"></header>
+	
+	<h1>Create foto</h1>
+	
+	<div th:insert="frag :: errors"></div>
+
+
+	<form
+		th:object="${foto}"
+		method="POST"
+		th:action="@{/fotos/create}"
+	>
+		<div>
+			<label>Title</label>
+			<input type="text" name="title" th:field="*{title}">
+			<div>Insert title</div>
+		</div>
+		<br>
+		<div>
+			<label>Description</label>
+			<input type="text" name="description" th:field="*{description}">
+			<div>Insert Description</div>
+		</div>
+		<br>
+		<div>
+			<label>Url</label>
+			<input type="text" name="url" th:field="*{url}">
+			<div>Insert url</div>
+		</div>
+		<br>
+		<div>
+			<label>Tag</label>
+			<input type="text" name="tag" th:field="*{tag}">
+			<div>Insert tag</div>
+		</div>
+		<br>
+		<div>
+			<label>Visible</label>
+			<input type="checkbox" checked="checked" name="visible" th:field="*{visible}">
+			<div>Check if it's visible</div>
+		</div>
+		<br>
+		<div>
+			<label>Categories</label>
+			<div th:each="category : ${categories}" th:object="${category}">
+				<input type="checkbox"  name="categories" th:value="*{id}" th:field="${foto.categories}">
+				<label>[[*{name}]]</label>	
+			</div>
+			<div>Check categories</div>
+		</div>
+		
+		
+		<br><br>
+		<input type="submit" value="Create">
+	</form>
+</body>
+</html>

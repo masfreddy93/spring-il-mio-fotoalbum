@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Index</title>
+</head>
+<body>
+	<header th:insert="frag :: header"></header>
+	
+	<div>
+		<h1>Fotos</h1>
+		<form>
+		
+		    <label class="form-label">Name</label>
+		    <input type="text" name="q" th:value="${query}">
+		  
+		  	<input type="submit" value="Search">
+		  
+		</form>
+		<br><br>
+		
+		<a th:href="@{/fotos/create}">Create foto</a>
+		<table th:if="${fotos.size()} > 0">
+			<thead>
+				<tr>
+					<th>ID</th>
+					<th>Title</th>
+					<th>Description</th>
+					<th>Tag</th>
+					<th>Visible</th>
+					<th>Categories</th>
+					<th>
+					<th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr
+					th:each="foto : ${fotos}"
+					th:object=${foto}
+				>
+					<td>[[*{id}]]</td>
+					<td>
+						<a
+							th:href="@{/fotos/foto/{id} (id=*{id})}"
+						>
+							[[*{title}]]
+						</a>
+					</td>
+					<td>[[*{description}]]</td>
+					<td>[[*{tag}]]</td>
+					<td>[[*{visible}]]</td>
+					<td>
+						<ul th:if="*{categories}">
+							<li
+								th:each="category : *{categories}"
+								th:object="${category}"
+							>
+								[[*{name}]]
+							</li>
+						</ul>
+					</td>
+					<td>
+						<a
+							th:href="@{/fotos/update/{id} (id = *{id})}"
+						>
+							Edit
+						</a>
+						<a
+							th:href="@{/fotos/delete/{id} (id = *{id})}"
+						>
+							Delete
+						</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</body>
+</html>

@@ -22,16 +22,16 @@ public class Foto {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
-	@NotNull (message = "title can't be null")
-	@NotBlank (message = "title can't be null")
+	@NotNull(message = "title can't be null")
+	@NotBlank(message = "title can't be null")
 	@Column(unique = true)
 	private String title;
 	
 	@Lob
 	private String description;
 	
-	@NotNull (message = "title can't be null")
-	@NotBlank (message = "title can't be null")
+	@NotNull
+	@NotBlank (message = "url can't be null")
 	private String url;
 	
 	@Column
@@ -61,6 +61,7 @@ public class Foto {
 		
 		this(title, description, url, tag, visible);
 		setCategories(categories);
+		setDateTime(LocalDateTime.now());
 	}
 	
 	public int getId() {
