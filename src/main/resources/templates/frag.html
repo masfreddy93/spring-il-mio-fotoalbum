@@ -17,9 +17,18 @@
 				Categories
 			</a>
 		</div>
+		<br>
 		<div>
 			User: <span sec:authentication="name"></span>
-			<a href="http://localhost:8080/login?logout">Log out</a>
+			<br>
+			<a 
+				href="http://localhost:8080/login"
+				sec:authorize="!isAuthenticated()"
+			>Log in</a>
+			<a 
+				href="http://localhost:8080/logout" 
+				sec:authorize="isAuthenticated()"
+			>Log out</a>
 		</div>
 	</div>
 	
