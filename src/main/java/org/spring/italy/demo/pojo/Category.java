@@ -2,6 +2,8 @@ package org.spring.italy.demo.pojo;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -20,12 +22,14 @@ public class Category {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
-	@NotNull(message = "title can't be null")
+	@NotNull(message = "Name can't be null")
 	@NotBlank(message = "Name can't be null")
 	private String name;
 	
 	@ManyToMany(mappedBy = "categories")
+	@JsonIgnore
 	private List<Foto> fotos;
+
 	
 	public Category() {}
 	public Category(String name) {
