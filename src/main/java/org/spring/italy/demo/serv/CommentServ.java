@@ -12,9 +12,9 @@ public class CommentServ {
 
 	@Autowired CommentRepo commentRepo;
 	
-	public void save(Comment comment) {
+	public Comment save(Comment comment) {
 		
-		commentRepo.save(comment);
+		return commentRepo.save(comment);
 	}
 	public List<Comment> findAll(){
 		
