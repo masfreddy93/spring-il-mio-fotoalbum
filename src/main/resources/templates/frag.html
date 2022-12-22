@@ -7,15 +7,17 @@
 <body>
 	
 	<!-- header -->
-	<div th:fragment="header">
+	<div th:fragment="header" class="mb-5 bg-light p-3 rounded container-fluid d-flex justify-content-between">
 		<div>
 			<a 
 				href="/fotos/admin"
 				sec:authorize="hasAuthority('ADMIN')"
+				class="btn btn-info"
 			>Fotos</a>
 			<a 
 				href="/categories/admin" 
 				sec:authorize="hasAuthority('ADMIN')"
+				class="btn btn-info"
 			>
 				Categories
 			</a>

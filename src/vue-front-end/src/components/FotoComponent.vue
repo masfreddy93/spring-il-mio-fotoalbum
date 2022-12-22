@@ -289,6 +289,7 @@ export default {
 
       button{
         margin-bottom: 1rem;
+        background-color: rgb(141, 189, 173);
       }
 
       .comments-cont ul{
@@ -303,7 +304,7 @@ export default {
             font-size: .80rem;
             margin-bottom: .1rem;
             text-align: start;
-            border-top: none;
+            border: none;
           }
 
           p{
