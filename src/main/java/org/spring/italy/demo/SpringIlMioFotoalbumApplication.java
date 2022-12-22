@@ -136,7 +136,7 @@ public class SpringIlMioFotoalbumApplication implements CommandLineRunner {
 		//create
 		Comment co1 = new Comment("anonymous", "nice pic!", f5);
 		Comment co2 = new Comment(null, "yo", f1);
-		Comment co3 = new Comment("anonymous", "cool", f4);
+		Comment co3 = new Comment("anonymous", "cool", f3);
 		Comment co4 = new Comment("carla", "awesome", f3);
 		Comment co5 = new Comment("roby", "are you crazy?", f5);
 		

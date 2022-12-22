@@ -9,7 +9,10 @@
 	<!-- header -->
 	<div th:fragment="header">
 		<div>
-			<a href="/fotos">Fotos</a>
+			<a 
+				href="/fotos/admin"
+				sec:authorize="hasAuthority('ADMIN')"
+			>Fotos</a>
 			<a 
 				href="/categories/admin" 
 				sec:authorize="hasAuthority('ADMIN')"
@@ -19,7 +22,9 @@
 		</div>
 		<br>
 		<div>
-			User: <span sec:authentication="name"></span>
+			<span sec:authorize="hasAuthority('ADMIN')">
+				User: <span sec:authentication="name"></span>
+			</span>
 			<br>
 			<a 
 				href="http://localhost:8080/login"

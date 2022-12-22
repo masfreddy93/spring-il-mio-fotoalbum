@@ -19,8 +19,8 @@ public class SecurityConf {
 	public SecurityFilterChain getFilterChain(HttpSecurity http) throws Exception {
 		
 		http.csrf().disable().authorizeHttpRequests()
-				.requestMatchers(HttpMethod.GET, "/fotos/admin/**", "/categories/**").hasAuthority("ADMIN")
-				.requestMatchers(HttpMethod.POST, "/fotos/admin/**", "/categories/**").hasAuthority("ADMIN")
+				.requestMatchers(HttpMethod.GET, "/fotos/**", "/categories/**").hasAuthority("ADMIN")
+				.requestMatchers(HttpMethod.POST, "/fotos/**", "/categories/**").hasAuthority("ADMIN")
 				.requestMatchers("/**").permitAll()
 			.and().formLogin()
 			.and().logout()

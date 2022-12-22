@@ -28,10 +28,14 @@
         <!-- Comments -->
         <button 
           @click="showComments(foto.id)"
+          v-if="show_comments_in_foto_with_id != foto.id"
         >Show comments</button>
         <div 
           v-if="show_comments_in_foto_with_id == foto.id"
         >
+        <button 
+            @click="show_comments_in_foto_with_id = -1"
+          >Hide comments</button>
           <ul 
             v-if="foto.comments && foto.comments.length > 0"
           >
@@ -68,15 +72,12 @@
           >
             <input v-model="comment_create.author" type="text" name="author" placeholder="Your name">
             <br>
-            <input v-model="comment_create.text" type="text" name="text" placeholder="Your text">
+            <textarea rows="5" cols="50" v-model="comment_create.text" type="text" name="text" placeholder="Your text"></textarea>
             <br>
 
             <input type="submit" value="Comment">
           </form>
           <br><br>
-          <button 
-            @click="show_comments_in_foto_with_id = -1"
-          >Hide comments</button>
         </div>
       </li>
     </ul>

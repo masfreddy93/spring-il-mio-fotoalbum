@@ -21,7 +21,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import jakarta.validation.Valid;
 
 @Controller
-@RequestMapping("/fotos")
+@RequestMapping("/fotos/admin")
 public class FotoController {
 	
 	@Autowired FotoServ fotoServ;
@@ -36,7 +36,7 @@ public class FotoController {
 		return "fotos/index";
 	}
 	
-	@GetMapping("admin/foto/{id}")
+	@GetMapping("/foto/{id}")
 	public String showFoto(@PathVariable("id") int id, Model model) {
 		
 		Foto foto = fotoServ.findById(id);
@@ -46,7 +46,7 @@ public class FotoController {
 	}
 	
 	
-	@GetMapping("/admin/create")
+	@GetMapping("/create")
 	public String createFoto(Model model) {
 		
 		Foto f = new Foto();
@@ -58,7 +58,7 @@ public class FotoController {
 	}
 	
 		
-	@PostMapping("/admin/create")
+	@PostMapping("/create")
 	public String storeFoto(@Valid Foto foto, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
 		
 		if(bindingResult.hasErrors()) {
@@ -82,11 +82,11 @@ public class FotoController {
 			return "redirect:/fotos/admin/create";
 		}
 		
-		return "redirect:/fotos";
+		return "redirect:/fotosadmin/";
 	}
 	
 	
-	@GetMapping("/admin/update/{id}")
+	@GetMapping("/update/{id}")
 	public String editFoto(@PathVariable("id") int id, Model model) {
 		
 		Foto foto = fotoServ.findById(id);
@@ -97,7 +97,7 @@ public class FotoController {
 		return "fotos/foto-update";
 	}
 	
-	@PostMapping("/admin/store")
+	@PostMapping("/store")
 	public String updateFoto(@Valid Foto foto, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
 		
 		if(bindingResult.hasErrors()) {
@@ -121,12 +121,12 @@ public class FotoController {
 			return "redirect:/fotos/admin/update/" + foto.getId();
 		}
 		
-		return "redirect:/fotos";
+		return "redirect:/fotos/admin";
 	}
 	
 	
 	
-	@GetMapping("/admin/delete/{id}")
+	@GetMapping("/delete/{id}")
 	public String deleteFoto(@PathVariable("id") int id, RedirectAttributes redirectAttributes) {
 		
 		try {
@@ -142,7 +142,7 @@ public class FotoController {
 			redirectAttributes.addFlashAttribute("catchError", msg);
 		}
 		
-		return "redirect:/fotos";
+		return "redirect:/fotos/admin";
 	}
 	
 	
