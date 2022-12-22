@@ -9,7 +9,9 @@
       <li v-for="foto in fotosOnSearch" :key="foto.id">
         <h4>{{ foto.title }}</h4>
         <img :src="foto.url" alt="pic">
-        <p>{{ foto.tag }}</p>
+        <p>{{ foto.description }}</p>
+        <span>{{ foto.tag }}</span>
+        <br>
 
         <!-- Comments -->
         <button @click="showComments(foto.id)">Show comments</button>
@@ -118,7 +120,7 @@ export default {
       return this.fotos.filter(el => {
 
         let title_and_tag = el.title + " " + el.tag
-        return title_and_tag.toLowerCase().includes(this.inputSearch.toLowerCase())
+        return title_and_tag.toLowerCase().includes(this.inputSearch.toLowerCase().trim())
       })
     }
   },

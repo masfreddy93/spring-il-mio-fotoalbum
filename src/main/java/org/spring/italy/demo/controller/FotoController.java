@@ -1,5 +1,6 @@
 package org.spring.italy.demo.controller;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.spring.italy.demo.pojo.Category;
@@ -70,6 +71,7 @@ public class FotoController {
 		
 		try {
 			
+			foto.setDateTime(LocalDateTime.now());
 			fotoServ.save(foto);
 			
 		} catch (Exception e) {

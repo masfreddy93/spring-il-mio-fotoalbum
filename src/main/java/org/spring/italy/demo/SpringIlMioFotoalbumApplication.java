@@ -39,8 +39,8 @@ public class SpringIlMioFotoalbumApplication implements CommandLineRunner {
 		//create some photos
 		Foto f1 = new Foto("Foto 1", "desc1", 
 				"https://edu.inaf.it/wp-content/uploads/2018/02/sole_senza_macchie.jpg", 
-				"beach", true);
-		Foto f2 = new Foto("Foto 2", "desc2", ".....url", "mojito", false);
+				"#insta #yo #fun", true);
+		Foto f2 = new Foto("Foto 2", "desc2", ".....url", "#takethat #enjoy", false);
 		Foto f3 = new Foto("Foto 3", "desc3", 
 				"https://www.nieddittas.it/wp-content/uploads/2021/12/qual-e-il-mare-piu-bello-della-sardegna.jpg", 
 				null, true);
@@ -84,7 +84,7 @@ public class SpringIlMioFotoalbumApplication implements CommandLineRunner {
 		});
 		Foto f4 = new Foto("Foto 4", "desc 4", 
 				"https://media-assets.wired.it/photos/6336eae909f48deb0c26a936/16:9/w_2560%2Cc_limit/ganapathy-kumar-ve_uN9V8xqU-unsplash.jpg", 
-				"tag4", true, catList1);
+				"#saywhat #mylife", true, catList1);
 		fotoServ.save(f4);
 		System.err.println(f4);
 		System.err.println(f4.getCategories());
@@ -96,7 +96,7 @@ public class SpringIlMioFotoalbumApplication implements CommandLineRunner {
 		});
 		Foto f5 = new Foto("Foto 5", "desc 5", 
 				"https://static2-viaggi.corriereobjects.it/wp-content/uploads/2022/05/iStock-1174299397-1080x720.jpg", 
-				"tag5", true, catList2);
+				"#cmon #go #run", true, catList2);
 		fotoServ.save(f5);
 		System.err.println(f5);
 		System.err.println(f5.getCategories());

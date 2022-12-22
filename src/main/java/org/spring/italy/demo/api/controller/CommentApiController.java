@@ -40,14 +40,14 @@ public class CommentApiController {
 			@Valid @RequestBody Comment comment) {
 		
 		Foto foto = fotoServ.findById(id);
-		Comment newComment = new Comment(comment.getAuthor(), comment.getText(), foto);
+		comment.setFoto(foto);
 		
-		commentServ.save(newComment);
+		commentServ.save(comment);
 		
 		System.err.println("-------");
 		System.err.println("CREATED COMMENT");
-		System.err.println(newComment);
+		System.err.println(comment);
 		
-		return newComment;
+		return comment;
 	}
 }
