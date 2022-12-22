@@ -129,9 +129,6 @@ public class SpringIlMioFotoalbumApplication implements CommandLineRunner {
 		
 //		//COMMENTS
 		
-		//prova
-//		Comment coProva = new Comment("Carla", "prova prova");
-//		commentServ.save(coProva);
 		
 		//create
 		Comment co1 = new Comment("anonymous", "nice pic!", f5);
