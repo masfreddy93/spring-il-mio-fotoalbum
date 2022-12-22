@@ -2,25 +2,39 @@
   <div class="container">
     <h2>Fotos</h2>
     <!-- Input search -->
-    <input type="text" placeholder="Search for title or tag" v-model="inputSearch">
+    <input 
+      v-model="inputSearch" 
+      type="text" placeholder="Search for title or tag"
+    >
 
     <!-- All Fotos -->
-    <ul v-if="fotos.length > 0">
+    <ul 
+      v-if="fotos.length > 0"
+    >
       <li 
         v-for="foto in fotosOnSearch" 
         :key="foto.id"
       >
         <!-- Foto details -->
         <h4>{{ foto.title }}</h4>
-        <img :src="foto.url" alt="pic">
+        <img 
+          :src="foto.url" 
+          alt="pic"
+        >
         <p>{{ foto.description }}</p>
         <span>{{ foto.tag }}</span>
         <br>
 
         <!-- Comments -->
-        <button @click="showComments(foto.id)">Show comments</button>
-        <div v-if="show_comments_in_foto_with_id == foto.id">
-          <ul>
+        <button 
+          @click="showComments(foto.id)"
+        >Show comments</button>
+        <div 
+          v-if="show_comments_in_foto_with_id == foto.id"
+        >
+          <ul 
+            v-if="foto.comments && foto.comments.length > 0"
+          >
             <li
               v-for="comment in foto.comments"
               :key="comment.id"
@@ -30,26 +44,39 @@
               <p>{{ comment.text }}</p>
             </li>
           </ul>
+          <p 
+            v-else>There are no comments. Write the firtst one!
+          </p>
           <br>
 
           <!-- Leave a comment (form)-->
-          <p v-if="errors.length" style="color: red;">
-            <b>Please correct the following error(s):</b>
+          <!-- errors -->
+          <p 
+            v-if="errors.length" 
+            style="color: red;"
+          >
             <ul>
-              <li v-for="error in errors" :key="error.id">{{ error }}</li>
+              <li 
+                v-for="error in errors" 
+                :key="error.id"
+              >{{ error }}</li>
             </ul>
           </p>
-
-          <form @submit="createComment">
-            <input type="text" name="author" v-model="comment_create.author" placeholder="Your name">
+          <!-- form -->
+          <form 
+            @submit="createComment"
+          >
+            <input v-model="comment_create.author" type="text" name="author" placeholder="Your name">
             <br>
-            <input type="text" name="text" v-model="comment_create.text" placeholder="Your text">
+            <input v-model="comment_create.text" type="text" name="text" placeholder="Your text">
             <br>
 
             <input type="submit" value="Comment">
           </form>
           <br><br>
-          <button @click="show_comments_in_foto_with_id = -1">Hide comments</button>
+          <button 
+            @click="show_comments_in_foto_with_id = -1"
+          >Hide comments</button>
         </div>
       </li>
     </ul>
@@ -61,7 +88,6 @@
 
 <script>
 import axios from 'axios'
-
 const API_URL = 'http://localhost:8080/api/1'
 
 export default {
@@ -134,6 +160,10 @@ export default {
           this.fotos[index].comments.push(comment)
         })
       // --------------------------------------------------------------------
+      
+      //clear input 
+      this.comment_create.author = ''
+      this.comment_create.text = ''
     }
   },
 
@@ -154,10 +184,20 @@ export default {
         // console.log(JSON.stringify(res.data))
 
         const fotos = res.data
-        if (fotos == null) 
+
+        //second check of visibility (backend previously)
+        let visibleFotos = [];
+        for(let i = 0; i < fotos.length; i++){
+          if(fotos[i].visible)
+            visibleFotos.push(fotos[i])
+        }
+        // console.log(visibleFotos)
+
+
+        if (!visibleFotos.length) 
           return
         
-        this.fotos = fotos
+        this.fotos = visibleFotos
       })
   }
 }
