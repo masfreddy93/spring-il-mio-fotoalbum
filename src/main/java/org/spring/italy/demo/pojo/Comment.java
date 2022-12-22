@@ -77,6 +77,7 @@ public class Comment {
 	public String toString() {
 		
 		return "(" + getId() + ")"
-				+ " " + getAuthor();
+				+ " " + getAuthor()
+				+ ": " + getText();
 	}
 }

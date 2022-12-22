@@ -6,7 +6,11 @@
 
     <!-- All Fotos -->
     <ul v-if="fotos.length > 0">
-      <li v-for="foto in fotosOnSearch" :key="foto.id">
+      <li 
+        v-for="foto in fotosOnSearch" 
+        :key="foto.id"
+      >
+        <!-- Foto details -->
         <h4>{{ foto.title }}</h4>
         <img :src="foto.url" alt="pic">
         <p>{{ foto.description }}</p>
@@ -21,21 +25,21 @@
               v-for="comment in foto.comments"
               :key="comment.id"
             >
-              <h4
-                v-if="comment.author"
-              > 
-                {{ comment.author }}</h4>
-              <h4
-                v-else
-              >
-                Unknown
-              </h4>
+              <h4 v-if="comment.author">{{ comment.author }}</h4>
+              <h4 v-else>Anonymous user</h4>
               <p>{{ comment.text }}</p>
             </li>
           </ul>
           <br>
 
           <!-- Leave a comment (form)-->
+          <p v-if="errors.length" style="color: red;">
+            <b>Please correct the following error(s):</b>
+            <ul>
+              <li v-for="error in errors" :key="error.id">{{ error }}</li>
+            </ul>
+          </p>
+
           <form @submit="createComment">
             <input type="text" name="author" v-model="comment_create.author" placeholder="Your name">
             <br>
@@ -49,6 +53,8 @@
         </div>
       </li>
     </ul>
+
+    <!-- If there are no visible fotos in DB -->
     <p v-else>No fotos in db</p>
   </div>
 </template>
@@ -60,16 +66,18 @@ const API_URL = 'http://localhost:8080/api/1'
 
 export default {
   name: 'FotoComponent',
+
   data() {
     return {
       fotos: [],
       inputSearch: '',
       show_comments_in_foto_with_id: -1,
-      comment_create: {}
+      comment_create: {},
+      errors: []
     }
   },
-  methods: {
 
+  methods: {
     getFotoIndexById(id) {
       for (let i = 0; i < this.fotos.length; i++) {
         const foto = this.fotos[i]
@@ -96,9 +104,22 @@ export default {
     },
     createComment(e){
       e.preventDefault()
-
       const id = this.show_comments_in_foto_with_id
 
+      // --------------------------------------------------------------------
+      //validation
+      this.errors = []
+
+      if (this.comment_create.author && this.comment_create.author.length > 255) 
+        this.errors.push('Author name cannot contain more than 255 letters')
+      if (!this.comment_create.text) 
+        this.errors.push('Text comment is required')
+
+      if(this.errors.length) return
+      // --------------------------------------------------------------------
+      
+      // --------------------------------------------------------------------
+      //api
       axios
         .post(API_URL + '/comments/create/' + id, this.comment_create)
         .then(res => {
@@ -112,6 +133,7 @@ export default {
           const index = this.getFotoIndexById(id)
           this.fotos[index].comments.push(comment)
         })
+      // --------------------------------------------------------------------
     }
   },
 
